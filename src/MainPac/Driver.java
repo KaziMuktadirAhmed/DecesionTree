@@ -1,7 +1,6 @@
 package MainPac;
 
-import DecesionTree.TreeBuilder;
-import DecesionTree.TreeDataset;
+import DecesionTree.*;
 
 public class Driver {
     private TreeDataset treeDataset;
