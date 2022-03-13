@@ -4,6 +4,6 @@ import DecesionTree.TreeBuilder;
 import DecesionTree.TreeDataset;
 
 public class Driver {
-    TreeDataset treeDataset;
-    TreeBuilder treeBuilder;
+    private TreeDataset treeDataset;
+    private TreeBuilder treeBuilder;
 }
