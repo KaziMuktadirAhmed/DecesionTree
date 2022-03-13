@@ -15,7 +15,40 @@ public class Wine {
     public double OD280_OD315_DilutedWines;
     public double Proline;
 
-    public double get (int index) {
+    public void set(int index, double value){
+        switch (index) {
+            case 0:
+                this.Alchol = value;
+            case 1:
+                this.MalicAcid = value;
+            case 2:
+                this.Ash = value;
+            case 3:
+                this.AlcalinityOfAsh = value;
+            case 4:
+                this.Magnesium = value;
+            case 5:
+                this.TotalPhenols = value;
+            case 6:
+                this.Flavanoids = value;
+            case 7:
+                this.NonflavanoidPhenols = value;
+            case 8:
+                this.Proanthocyanins = value;
+            case 9:
+                this.ColorIntensity = value;
+            case 10:
+                this.Hue = value;
+            case 11:
+                this.OD280_OD315_DilutedWines = value;
+            case 12:
+                this.Proline = value;
+            default:
+                System.out.println("Wrong input");
+        }
+    }
+
+    public double get(int index) {
         switch (index){
             case 0:
                 return this.Alchol;

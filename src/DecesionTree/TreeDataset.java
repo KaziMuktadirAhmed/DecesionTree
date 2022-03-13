@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 public class TreeDataset {
     private final String filePath;
+    public Wine[] wines;
 
     public TreeDataset (String filePath) {
         this.filePath = filePath;
@@ -20,6 +21,10 @@ public class TreeDataset {
         while (scanDataFile.hasNextLine()) {
             String dataLine = scanDataFile.nextLine();
             wineData = dataLine.split(",", 0);
+
+            for (int i=0; i<wineData.length; i++) {
+
+            }
         }
 
     }
