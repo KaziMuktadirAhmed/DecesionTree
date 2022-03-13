@@ -11,6 +11,8 @@ public class TreeDataset {
     public ArrayList<Wine> wines = new ArrayList<>();
     public ArrayList<ArrayList<Wine>> controlData = new ArrayList<>();
 
+    public ArrayList
+
     public TreeDataset (String filePath) throws FileNotFoundException {
         this.filePath = filePath;
         parseDataFile();
