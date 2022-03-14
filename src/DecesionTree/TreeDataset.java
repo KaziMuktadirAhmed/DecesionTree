@@ -54,7 +54,7 @@ public class TreeDataset {
     }
 
     private void setTrainingDataset () {
-        ArrayList<Wine> tempWines = wines;
+        ArrayList<Wine> tempWines = new ArrayList<>(wines);
         int maximumSize = (int) Math.ceil(((double) wines.size() * 90) / (double) 100);
 
         while (TrainingDataset.size() < maximumSize) {
