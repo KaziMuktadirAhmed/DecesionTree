@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Node {
-    public String classType = "";
     public ArrayList<Wine> data;
-    public double conditionThreshold;
     public Node leftChild, rightChild;
+
+    public String classType = "";
+    public int conditionAttribute;
+    public double conditionThreshold;
 
     public Node (ArrayList<Wine> data) {
         this.data = data;
