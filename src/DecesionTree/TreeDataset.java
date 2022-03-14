@@ -40,7 +40,7 @@ public class TreeDataset {
             wineData = dataLine.split(",", 0);
 
             Wine wine = new Wine();
-            for (int i=1; i<wineData.length; i++) {
+            for (int i=0; i<wineData.length; i++) {
                 wine.set(i, Double.parseDouble(wineData[i]));
             } wines.add(wine);
 

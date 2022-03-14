@@ -5,14 +5,13 @@ import java.util.ArrayList;
 public class Node {
     public String classType;
     public ArrayList<Wine> data;
-    public Node leftChild, rightChild;
+    public ArrayList<Node> childs;
 
     public Node () {}
 
-    public Node(String classType, ArrayList<Wine> data, Node leftChild, Node rightChild) {
+    public Node(String classType, ArrayList<Wine> data, ArrayList<Node> childs) {
         this.classType = classType;
         this.data = data;
-        this.leftChild = leftChild;
-        this.rightChild = rightChild;
+        this.childs = childs;
     }
 }

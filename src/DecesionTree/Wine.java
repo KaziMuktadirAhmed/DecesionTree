@@ -1,6 +1,7 @@
 package DecesionTree;
 
 public class Wine {
+    public int classType;
     public double Alchol;
     public double MalicAcid;
     public double Ash;
@@ -17,6 +18,8 @@ public class Wine {
 
     public void set(int index, double value){
         switch (index) {
+            case 0:
+                this.classType = (int) value;
             case 1:
                 this.Alchol = value;
                 break;
@@ -63,6 +66,8 @@ public class Wine {
 
     public double get(int index) {
         switch (index){
+            case 0:
+                return this.classType;
             case 1:
                 return this.Alchol;
             case 2:
@@ -94,7 +99,13 @@ public class Wine {
         }
     }
 
+    public boolean matchClass(Wine wine) {
+        return this.classType == wine.classType;
+    }
+
     public boolean match(Wine wine) {
+        if (this.classType != wine.classType)
+            return false;
         if (this.Alchol != wine.Alchol)
             return false;
         if (this.MalicAcid != wine.MalicAcid)
