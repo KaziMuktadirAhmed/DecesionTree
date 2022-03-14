@@ -7,7 +7,9 @@ public class Tree {
         this.root = root;
     }
 
-    public void insert() {}
+    public void insert() {
+
+    }
 
     public boolean search() {
         boolean serachVal = true;

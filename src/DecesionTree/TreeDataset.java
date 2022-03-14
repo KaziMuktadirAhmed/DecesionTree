@@ -44,11 +44,11 @@ public class TreeDataset {
                 wine.set(i, Double.parseDouble(wineData[i]));
             } wines.add(wine);
 
-            if (Integer.parseInt(wineData[0]) == 1)
+            if (wine.classType == 1)
                 this.controlData.get(0).add(wine);
-            else if (Integer.parseInt(wineData[0]) == 2)
+            else if (wine.classType == 2)
                 this.controlData.get(1).add(wine);
-            else if (Integer.parseInt(wineData[0]) == 3)
+            else if (wine.classType == 3)
                 this.controlData.get(2).add(wine);
         }
     }
