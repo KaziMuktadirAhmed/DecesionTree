@@ -1,13 +1,23 @@
 package DecesionTree;
 
-public class Tree {
-    public Node root;
+import java.io.FileNotFoundException;
 
-    public Tree (Node root) {
-        this.root = root;
+public class Tree {
+    private TreeBuilder treeBuilder;
+    private final TreeDataset treeDataset;
+    public Node root = null;
+
+    public Tree (String filePath) throws FileNotFoundException {
+        treeDataset = new TreeDataset(filePath);
+        this.root = new Node(treeDataset.TrainingDataset);
     }
 
-    public void insert() {
+    public Tree (TreeDataset treeDataset) {
+        this.treeDataset = treeDataset;
+        this.root = new Node(treeDataset.TrainingDataset);
+    }
+
+    public void buildTree() {
 
     }
 

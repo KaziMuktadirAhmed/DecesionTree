@@ -3,12 +3,16 @@ package DecesionTree;
 import java.util.ArrayList;
 
 public class TreeBuilder {
-    private ArrayList<Wine> parentNodeData;
+    private Node parentNode;
     private int parentLevel;
 
-    public TreeBuilder(ArrayList<Wine> parentNodeData, int parentLevel) {
-        this.parentNodeData = parentNodeData;
+    public TreeBuilder(Node parentNode, int parentLevel) {
+        this.parentNode = parentNode;
         this.parentLevel = parentLevel;
+    }
+
+    public void build() {
+
     }
 
     private double logBase3 (double value) {
