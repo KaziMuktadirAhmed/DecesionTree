@@ -63,7 +63,7 @@ public class TreeDataset {
             tempWines.remove(newRandomIndex);
         }
 
-        TestingDataset = tempWines;
+        TestingDataset = new ArrayList<>(tempWines);
     }
 
     private int rangedRandom (int start, int end) {
