@@ -1,7 +1,5 @@
 package DecesionTree;
 
-import java.util.ArrayList;
-
 public class TreeBuilder {
     private Node parentNode;
     private int parentLevel;
@@ -15,9 +13,9 @@ public class TreeBuilder {
 
     }
 
-    private double logBase3 (double value) {
-        double result;
-        result = Math.log(value) / Math.log(3);
-        return result;
-    }
+//    private double logBase3 (double value) {
+//        double result;
+//        result = Math.log(value) / Math.log(3);
+//        return result;
+//    }
 }
