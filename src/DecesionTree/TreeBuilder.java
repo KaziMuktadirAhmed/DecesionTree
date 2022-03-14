@@ -1,15 +1,18 @@
 package DecesionTree;
 
 public class TreeBuilder {
-    private Node parentNode;
-    private int parentLevel;
+    private Node RootNode;
+//    private int parentLevel;
 
-    public TreeBuilder(Node parentNode, int parentLevel) {
-        this.parentNode = parentNode;
-        this.parentLevel = parentLevel;
+    public TreeBuilder(Node RootNode) {
+        this.RootNode = RootNode;
     }
 
     public void build() {
+
+    }
+
+    private void splitNode (Node currentParent) {
 
     }
 

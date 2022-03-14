@@ -17,7 +17,7 @@ public class Tree {
         this.root = new Node(treeDataset.TrainingDataset);
     }
 
-    public void buildTree() {
+    private void buildTree() {
 
     }
 
