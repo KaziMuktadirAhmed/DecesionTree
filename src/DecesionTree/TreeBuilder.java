@@ -12,18 +12,19 @@ public class TreeBuilder {
     }
 
     public void build() {
-        splitNode(RootNode, 0);
+        if (RootNode != null)
+            splitNode(RootNode);
     }
 
-    private void splitNode(Node currentParent, int currentLevel) {
+    private void splitNode(Node currentParent) {
         if (shouldSplit(currentParent)) {
-            int currentDimention = (currentLevel % maxDimention) + 1;
-            double splitPoint = findBestSplitPoint(currentParent);
+            int splitAttr = findBestSplitAttribute(currentParent);
+            double splitPoint = findBestSplitPoint(currentParent, splitAttr);
 
 
 
-            splitNode(currentParent.leftChild, currentLevel + 1);
-            splitNode(currentParent.rightChild,currentLevel + 1);
+            splitNode(currentParent.leftChild);
+            splitNode(currentParent.rightChild);
         }
     }
 
@@ -40,9 +41,14 @@ public class TreeBuilder {
         return false;
     }
 
-    private double findBestSplitPoint(Node node) {
+    private double findBestSplitPoint(Node node, int attrToSplit) {
         double splitPoint = 0;
         return splitPoint;
+    }
+
+    private int findBestSplitAttribute (Node node) {
+        int splitAttr = 0;
+        return splitAttr;
     }
 
     private double calculateWeightedAvarageOfChilds(Node node) {
