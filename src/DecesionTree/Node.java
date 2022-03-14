@@ -6,6 +6,7 @@ import java.util.Arrays;
 public class Node {
     public String classType = "";
     public ArrayList<Wine> data;
+    public double conditionThreshold;
     public Node leftChild, rightChild;
 
     public Node (ArrayList<Wine> data) {
