@@ -31,15 +31,15 @@ public class Node {
         }
 
         for (int i=1; i<maximumClassCount+1; i++) {
-            result -= (count[0]/count[i]) * logBase3(count[0]/count[i]);
+            result -= (count[0]/count[i]) * logBase2(count[0]/count[i]);
         }
 
         return result;
     }
 
-    private double logBase3 (double value) {
+    private double logBase2 (double value) {
         double result;
-        result = Math.log(value) / Math.log(3);
+        result = Math.log(value) / Math.log(2);
         return result;
     }
 }
