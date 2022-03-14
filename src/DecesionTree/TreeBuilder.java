@@ -1,10 +1,14 @@
 package DecesionTree;
 
+import java.util.ArrayList;
+
 public class TreeBuilder {
     private Node RootNode;
+    private int maxDimention;
 
-    public TreeBuilder(Node RootNode) {
+    public TreeBuilder(Node RootNode, int maxDimention) {
         this.RootNode = RootNode;
+        this.maxDimention = maxDimention;
     }
 
     public void build() {
@@ -13,9 +17,13 @@ public class TreeBuilder {
 
     private void splitNode(Node currentParent, int currentLevel) {
         if (shouldSplit(currentParent)) {
+            int currentDimention = (currentLevel % maxDimention) + 1;
+            double splitPoint = findBestSplitPoint(currentParent);
+
+
 
             splitNode(currentParent.leftChild, currentLevel + 1);
-            splitNode(currentParent.rightChild, currentLevel + 1);
+            splitNode(currentParent.rightChild,currentLevel + 1);
         }
     }
 
@@ -30,6 +38,16 @@ public class TreeBuilder {
             }
         }
         return false;
+    }
+
+    private double findBestSplitPoint(Node node) {
+        double splitPoint = 0;
+        return splitPoint;
+    }
+
+    private double calculateWeightedAvarageOfChilds(Node node) {
+        double totalAvg = 0;
+        return totalAvg;
     }
 
 

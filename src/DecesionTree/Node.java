@@ -32,7 +32,7 @@ public class Node {
         }
 
         for (int i=1; i<maximumClassCount+1; i++) {
-            result -= (count[0]/count[i]) * logBase2(count[0]/count[i]);
+            result -= (count[i]/count[0]) * logBase2(count[i]/count[0]);
         }
 
         return result;
