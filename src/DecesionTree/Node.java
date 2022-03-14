@@ -6,15 +6,16 @@ import java.util.Arrays;
 public class Node {
     public String classType = "";
     public ArrayList<Wine> data;
-    public ArrayList<Node> childs;
+    public Node leftChild, rightChild;
 
     public Node (ArrayList<Wine> data) {
         this.data = data;
     }
 
-    public Node(ArrayList<Wine> data, ArrayList<Node> childs) {
+    public Node(ArrayList<Wine> data, Node leftChild, Node rightChild) {
         this.data = data;
-        this.childs = childs;
+        this.leftChild = leftChild;
+        this.rightChild = rightChild;
     }
 
     public double enthropy() {
