@@ -1,6 +1,7 @@
 package DecesionTree;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class TreeBuilder {
     private Node RootNode;
@@ -18,10 +19,20 @@ public class TreeBuilder {
 
     private void splitNode(Node currentParent) {
         if (shouldSplit(currentParent)) {
-            int splitAttr = findBestSplitAttribute(currentParent);
-            double splitPoint = findBestSplitPoint(currentParent, splitAttr);
+            findBestSplitPoint(currentParent);
 
+            ArrayList<Wine> leftChildData = new ArrayList<>();
+            ArrayList<Wine> rightChildData = new ArrayList<>();
 
+            for (Wine wine : currentParent.data) {
+                if (wine.get(currentParent.conditionAttribute) <=  currentParent.conditionThreshold)
+                    leftChildData.add(wine);
+                else
+                    rightChildData.add(wine);
+            }
+
+            currentParent.leftChild = new Node(leftChildData);
+            currentParent.rightChild = new Node(rightChildData);
 
             splitNode(currentParent.leftChild);
             splitNode(currentParent.rightChild);
@@ -41,14 +52,8 @@ public class TreeBuilder {
         return false;
     }
 
-    private double findBestSplitPoint(Node node, int attrToSplit) {
-        double splitPoint = 0;
-        return splitPoint;
-    }
+    private void findBestSplitPoint(Node node) {
 
-    private int findBestSplitAttribute (Node node) {
-        int splitAttr = 0;
-        return splitAttr;
     }
 
     private double calculateWeightedAvarageOfChilds(Node node) {
