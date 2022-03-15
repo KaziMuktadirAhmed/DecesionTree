@@ -39,12 +39,15 @@ public class TreeBuilder {
         }
     }
 
-
     private void findBestSplitPoint(Node node) {
         int conditionAttribute;
         double conditionThreashold;
 
+        for (Wine wine : node.data) {
+            for (int i = 1; i <= 13; i++) {
 
+            }
+        }
     }
 
     private double calculateWeightedAvarageOfChilds(Node node) {
