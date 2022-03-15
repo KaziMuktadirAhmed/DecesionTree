@@ -1,15 +1,14 @@
 package DecesionTree;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class TreeBuilder {
-    private Node RootNode;
-    private int maxDimention;
+    private final Node RootNode;
+    private final int maxDimension;
 
-    public TreeBuilder(Node RootNode, int maxDimention) {
+    public TreeBuilder(Node RootNode, int maxDimension) {
         this.RootNode = RootNode;
-        this.maxDimention = maxDimention;
+        this.maxDimension = maxDimension;
     }
 
     public void build() {
@@ -40,15 +39,37 @@ public class TreeBuilder {
     }
 
     private void findBestSplitPoint(Node node) {
-        int conditionAttribute;
-        double conditionThreashold;
-        Node tempNode = new Node(node.data);
+        int conditionAttribute = -1;
+        double conditionThreashold = -1;
+        double initialGain = -1;
 
         for (Wine wine : node.data) {
-            for (int i = 1; i <= 13; i++) {
+            for (int i = 1; i <= maxDimension; i++)
+            {
+                Node tempNode = new Node(node.data);
 
+                ArrayList<Wine> leftChildData = new ArrayList<>();
+                ArrayList<Wine> rightChildData = new ArrayList<>();
+
+                for (Wine tempWineData : tempNode.data) {
+                    if (tempWineData.get(i) <=  wine.get(i))
+                        leftChildData.add(wine);
+                    else
+                        rightChildData.add(wine);
+                }
+
+                tempNode.leftChild = new Node(leftChildData);
+                tempNode.rightChild = new Node(rightChildData);
+
+                if (calculateInformationGain(tempNode) > initialGain){
+                    conditionAttribute = i;
+
+                }
             }
         }
+
+        node.conditionAttribute = conditionAttribute;
+        node.conditionThreshold = conditionThreashold;
     }
 
     private double calculateInformationGain(Node node) {
@@ -62,11 +83,4 @@ public class TreeBuilder {
         return gain;
     }
 
-
-
-//    private double logBase3 (double value) {
-//        double result;
-//        result = Math.log(value) / Math.log(3);
-//        return result;
-//    }
 }
