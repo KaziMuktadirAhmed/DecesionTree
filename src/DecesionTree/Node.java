@@ -21,6 +21,19 @@ public class Node {
         this.rightChild = rightChild;
     }
 
+    public boolean shouldSplit() {
+        if (data.size() == 1)
+            return false;
+        else {
+            int refClassType = data.get(0).classType;
+            for (Wine wine : data) {
+                if (refClassType != wine.classType)
+                    return true;
+            }
+        }
+        return false;
+    }
+
     public double enthropy() {
         double result = 0.0;
         int maximumClassCount = 3;

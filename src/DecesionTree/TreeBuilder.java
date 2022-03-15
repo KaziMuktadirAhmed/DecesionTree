@@ -18,7 +18,7 @@ public class TreeBuilder {
     }
 
     private void splitNode(Node currentParent) {
-        if (shouldSplit(currentParent)) {
+        if (currentParent.shouldSplit()) {
             findBestSplitPoint(currentParent);
 
             ArrayList<Wine> leftChildData = new ArrayList<>();
@@ -39,20 +39,11 @@ public class TreeBuilder {
         }
     }
 
-    private boolean shouldSplit(Node node) {
-        if (node.data.size() == 1)
-            return false;
-        else {
-            int refClassType = node.data.get(0).classType;
-            for (Wine wine : node.data) {
-                if (refClassType != wine.classType)
-                    return true;
-            }
-        }
-        return false;
-    }
 
     private void findBestSplitPoint(Node node) {
+        int conditionAttribute;
+        double conditionThreashold;
+
 
     }
 
