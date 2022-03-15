@@ -9,14 +9,18 @@ public class TreeBuilder {
     public TreeBuilder(Node RootNode, int maxDimension) {
         this.RootNode = RootNode;
         this.maxDimension = maxDimension;
+//        System.out.println("okaue");
     }
 
     public void build() {
-        if (RootNode != null)
+        if (RootNode != null) {
             splitNode(RootNode);
+//            System.out.println("okay");
+        }
     }
 
     private void splitNode(Node currentParent) {
+
         if (currentParent.shouldSplit()) {
             findBestSplitPoint(currentParent);
 
@@ -63,7 +67,7 @@ public class TreeBuilder {
 
                 if (calculateInformationGain(tempNode) > initialGain){
                     conditionAttribute = i;
-
+                    conditionThreashold = wine.get(i);
                 }
             }
         }

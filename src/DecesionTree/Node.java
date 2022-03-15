@@ -22,12 +22,12 @@ public class Node {
     }
 
     public boolean shouldSplit() {
-        if (data.size() == 1)
+        if (data.size() < 2)
             return false;
         else {
             int refClassType = data.get(0).classType;
-            for (Wine wine : data) {
-                if (refClassType != wine.classType)
+            for (int i=0; i<data.size(); i++) {
+                if (refClassType != data.get(i).classType)
                     return true;
             }
         }
