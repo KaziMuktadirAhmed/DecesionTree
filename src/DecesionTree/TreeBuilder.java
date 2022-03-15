@@ -42,6 +42,7 @@ public class TreeBuilder {
     private void findBestSplitPoint(Node node) {
         int conditionAttribute;
         double conditionThreashold;
+        Node tempNode = new Node(node.data);
 
         for (Wine wine : node.data) {
             for (int i = 1; i <= 13; i++) {
@@ -50,9 +51,15 @@ public class TreeBuilder {
         }
     }
 
-    private double calculateWeightedAvarageOfChilds(Node node) {
-        double totalAvg = 0;
-        return totalAvg;
+    private double calculateInformationGain(Node node) {
+        double totalAvg = 0, gain = 0;
+        double probabilityOfLeft = (double) node.leftChild.data.size() / node.data.size();
+        double probabilityOfRight = (double) node.rightChild.data.size() / node.data.size();
+
+        totalAvg = probabilityOfLeft * node.leftChild.enthropy() +  probabilityOfRight * node.rightChild.enthropy();
+        gain = node.enthropy() - totalAvg;
+
+        return gain;
     }
 
 
