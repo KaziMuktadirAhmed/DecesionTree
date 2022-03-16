@@ -13,12 +13,14 @@ public class Node {
 
     public Node (ArrayList<Wine> data) {
         this.data = data;
+        setClassType();
     }
 
     public Node(ArrayList<Wine> data, Node leftChild, Node rightChild) {
         this.data = data;
         this.leftChild = leftChild;
         this.rightChild = rightChild;
+        setClassType();
     }
 
     public boolean shouldSplit() {
@@ -33,7 +35,6 @@ public class Node {
         return count[1] * count[2] + count[2] * count[3] + count[3] * count[1] > 0;
     }
 
-
     public void splitByGivenCondition() {
         ArrayList<Wine> leftChildData = new ArrayList<>();
         ArrayList<Wine> rightChildData = new ArrayList<>();
@@ -47,6 +48,20 @@ public class Node {
 
         leftChild = new Node(leftChildData);
         rightChild = new Node(rightChildData);
+    }
+
+    private void setClassType () {
+        double[] count = new double[4];
+        Arrays.fill(count, 0);
+        for (Wine wine : data) {
+            count[0]++;
+            count[wine.classType]++;
+        }
+
+        for (int i=1; i<4; i++) {
+            if (count[i] != 0)
+                classType += i + " ";
+        }
     }
 
     public double informationGain() {
@@ -86,7 +101,6 @@ public class Node {
         return result;
     }
 
-
     public void setCondition(int conditionAttribute, double conditionThreshold) {
         this.conditionAttribute = conditionAttribute;
         this.conditionThreshold = conditionThreshold;
@@ -102,6 +116,8 @@ public class Node {
 
         for (int i=0; i<tabLevel; i++) System.out.print("\t");
         System.out.println("Total size " + count[0]);
+        for (int i=0; i<tabLevel; i++) System.out.print("\t");
+        System.out.println("Class Type " + classType);
         for (int i=0; i<tabLevel; i++) System.out.print("\t");
         System.out.println("Condition attr: " + conditionAttribute + " Condition threshold: " + conditionThreshold);
         for (int i=0; i<tabLevel; i++) System.out.print("\t");

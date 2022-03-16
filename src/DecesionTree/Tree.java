@@ -23,8 +23,10 @@ public class Tree {
         treeBuilder.build();
     }
 
-    public int checkWine() {
+    public int checkWine(Wine wineToBeChecked) {
         int foundClass = -1;
+
+
 
         return foundClass;
     }
