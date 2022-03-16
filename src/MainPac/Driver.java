@@ -13,9 +13,9 @@ public class Driver {
     }
 
     public void run() throws FileNotFoundException {
-//        decesionTree = new Tree("wine.data");
-        decesionTree = new Tree("DebugTest.txt");
-//        decesionTree.
+        decesionTree = new Tree("wine.data");
+//        decesionTree = new Tree("DebugTest.txt");
+
         decesionTree.traverseTree();
     }
 }

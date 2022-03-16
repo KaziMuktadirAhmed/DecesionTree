@@ -110,6 +110,7 @@ public class Node {
         System.out.println("Class 2: " + count[2]);
         for (int i=0; i<tabLevel; i++) System.out.print("\t");
         System.out.println("Class 3: " + count[3]);
+        System.out.println("");
     }
 }
 

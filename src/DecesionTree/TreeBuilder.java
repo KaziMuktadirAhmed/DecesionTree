@@ -35,11 +35,11 @@ public class TreeBuilder {
                 tempNode.splitByGivenCondition();
 
                 if (tempNode.leftChild.data.size() != 0 && tempNode.rightChild.data.size() != 0) {
-                    System.out.println("Node size: " + tempNode.data.size());
-                    System.out.println("Enthropy: " + tempNode.enthropy());
-                    System.out.println("Condition attr: " + tempNode.conditionAttribute + " Condition threshold: " + tempNode.conditionThreshold);
-                    System.out.println("left nut size: " + tempNode.leftChild.data.size() + " right nut size: " + tempNode.rightChild.data.size());
-                    System.out.println("Information Gain: " + tempNode.informationGain());
+//                    System.out.println("Node size: " + tempNode.data.size());
+//                    System.out.println("Enthropy: " + tempNode.enthropy());
+//                    System.out.println("Condition attr: " + tempNode.conditionAttribute + " Condition threshold: " + tempNode.conditionThreshold);
+//                    System.out.println("left nut size: " + tempNode.leftChild.data.size() + " right nut size: " + tempNode.rightChild.data.size());
+//                    System.out.println("Information Gain: " + tempNode.informationGain());
 
                     if (tempNode.informationGain() > initialGain) {
                         initialGain = tempNode.informationGain();
