@@ -22,15 +22,21 @@ public class Node {
     }
 
     public boolean shouldSplit() {
-        if (data.size() < 2)
+        if (data.size() < 2) {
+            System.out.println("should break size");
             return false;
+        }
         else {
             int refClassType = data.get(0).classType;
             for (Wine data : this.data) {
-                if (refClassType != data.classType)
+                if (refClassType != data.classType) {
+                    System.out.println(refClassType + " is not " + data.classType);
                     return true;
+                }
             }
         }
+
+        System.out.println("should break not match");
         return false;
     }
 
