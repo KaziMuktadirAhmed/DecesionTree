@@ -54,13 +54,13 @@ public class Node {
         double probabilityOfLeft = (double) leftChild.data.size() / data.size();
         double probabilityOfRight = (double) rightChild.data.size() / data.size();
 
-        totalAvg = probabilityOfLeft * leftChild.enthropy() +  probabilityOfRight * rightChild.enthropy();
-        gain = enthropy() - totalAvg;
+        totalAvg = probabilityOfLeft * leftChild.entropy() +  probabilityOfRight * rightChild.entropy();
+        gain = entropy() - totalAvg;
 
         return gain;
     }
 
-    public double enthropy() {
+    public double entropy() {
         double result = 0.0;
         int maximumClassCount = 3;
 
@@ -92,7 +92,7 @@ public class Node {
         this.conditionThreshold = conditionThreshold;
     }
 
-    public void countClasses (int tabLevel) {
+    public void printNode(int tabLevel) {
         double[] count = new double[4];
         Arrays.fill(count, 0);
         for (Wine wine : data) {

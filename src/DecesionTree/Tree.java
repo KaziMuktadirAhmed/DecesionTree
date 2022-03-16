@@ -23,9 +23,10 @@ public class Tree {
         treeBuilder.build();
     }
 
-    public boolean search() {
-        boolean serachVal = true;
-        return false;
+    public int checkWine() {
+        int foundClass = -1;
+
+        return foundClass;
     }
 
     public void traverseTree () {
@@ -36,7 +37,7 @@ public class Tree {
     }
 
     public void traverseTree (Node startNode, int tabLevel) {
-        startNode.countClasses(tabLevel-1);
+        startNode.printNode(tabLevel-1);
 
 
         if (startNode.leftChild != null) {
