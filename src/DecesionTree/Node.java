@@ -26,12 +26,23 @@ public class Node {
             return false;
         else {
             int refClassType = data.get(0).classType;
-            for (int i=0; i<data.size(); i++) {
-                if (refClassType != data.get(i).classType)
+            for (Wine data : this.data) {
+                if (refClassType != data.classType)
                     return true;
             }
         }
         return false;
+    }
+
+    public double informationGain() {
+        double totalAvg = 0, gain = 0;
+        double probabilityOfLeft = (double) leftChild.data.size() / data.size();
+        double probabilityOfRight = (double) rightChild.data.size() / data.size();
+
+        totalAvg = probabilityOfLeft * leftChild.enthropy() +  probabilityOfRight * rightChild.enthropy();
+        gain = enthropy() - totalAvg;
+
+        return gain;
     }
 
     public double enthropy() {
@@ -58,4 +69,11 @@ public class Node {
         result = Math.log(value) / Math.log(2);
         return result;
     }
+
+
+    public void setCondition(int conditionAttribute, double conditionThreshold) {
+        this.conditionAttribute = conditionAttribute;
+        this.conditionThreshold = conditionThreshold;
+    }
 }
+
