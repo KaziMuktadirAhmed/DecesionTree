@@ -9,13 +9,11 @@ public class TreeBuilder {
     public TreeBuilder(Node RootNode, int maxDimension) {
         this.RootNode = RootNode;
         this.maxDimension = maxDimension;
-//        System.out.println("okaue");
     }
 
     public void build() {
         if (RootNode != null) {
             splitNode(RootNode);
-//            System.out.println("okay");
         }
     }
 
@@ -24,7 +22,7 @@ public class TreeBuilder {
             return;
 
         findBestSplitPoint(currentParent);
-        splitChildFromGivenCondition(currentParent);
+        currentParent.splitByGivenCondition();
 
         System.out.println("left child count: " + currentParent.leftChild.data.size());
         if(currentParent.leftChild.shouldSplit()){
@@ -35,37 +33,21 @@ public class TreeBuilder {
             splitNode(currentParent.rightChild);}
     }
 
-    private void splitChildFromGivenCondition(Node currentParent) {
-        ArrayList<Wine> leftChildData = new ArrayList<>();
-        ArrayList<Wine> rightChildData = new ArrayList<>();
 
-        for (Wine wine : currentParent.data) {
-            if (wine.get(currentParent.conditionAttribute) <=  currentParent.conditionThreshold)
-                leftChildData.add(wine);
-            else
-                rightChildData.add(wine);
-        }
-
-        currentParent.leftChild = new Node(leftChildData);
-        currentParent.rightChild = new Node(rightChildData);
-
-
-    }
 
     private void findBestSplitPoint(Node node) {
         Node tempNode = new Node(node.data);
         double initialGain = -1;
-        double currentGain;
 
-        for (int i = 1; i <= maxDimension; i++)
-        {
-            tempNode.setCondition(i, findAvgAttributeValue(node, i));
-            splitChildFromGivenCondition(tempNode);
+        for (Wine wine : tempNode.data) {
+            for (int i = 1; i <= maxDimension; i++) {
+                tempNode.setCondition(i, wine.get(i));
+                tempNode.splitByGivenCondition();
 
-            currentGain = tempNode.informationGain();
-            if (currentGain > initialGain){
-                initialGain = tempNode.informationGain();
-                node.setCondition(tempNode.conditionAttribute, tempNode.conditionThreshold);
+                if (tempNode.informationGain() > initialGain) {
+                    initialGain = tempNode.informationGain();
+                    node.setCondition(tempNode.conditionAttribute, tempNode.conditionThreshold);
+                }
             }
         }
     }

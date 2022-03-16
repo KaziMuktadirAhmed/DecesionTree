@@ -40,6 +40,21 @@ public class Node {
         return false;
     }
 
+    public void splitByGivenCondition() {
+        ArrayList<Wine> leftChildData = new ArrayList<>();
+        ArrayList<Wine> rightChildData = new ArrayList<>();
+
+        for (Wine wine : data) {
+            if (wine.get(conditionAttribute) <=  conditionThreshold)
+                leftChildData.add(wine);
+            else
+                rightChildData.add(wine);
+        }
+
+        leftChild = new Node(leftChildData);
+        rightChild = new Node(rightChildData);
+    }
+
     public double informationGain() {
         double totalAvg = 0, gain = 0;
         double probabilityOfLeft = (double) leftChild.data.size() / data.size();
