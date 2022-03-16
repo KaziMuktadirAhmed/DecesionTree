@@ -19,6 +19,15 @@ public class Driver {
         System.out.println("Accuracy: " + accuracy*100 + " percent");
     }
 
+    private double calculateAvgAccuracy_crossValidation () throws FileNotFoundException {
+        double aggregatedAvgAccuracy = 0.0;
+        treeDataset = new TreeDataset("wine.data");
+
+
+
+        return aggregatedAvgAccuracy;
+    }
+
     private double calculateAggregatedAverage() throws FileNotFoundException {
         double aggregatedAvgAccuracy = 0.0;
 
