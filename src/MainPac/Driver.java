@@ -10,22 +10,30 @@ public class Driver {
     private TreeBuilder treeBuilder;
     private Tree decesionTree;
 
-    public Driver() throws FileNotFoundException {
-    }
-
     public void run() throws FileNotFoundException {
         treeDataset = new TreeDataset("wine.data");
         decesionTree = new Tree(treeDataset);
         decesionTree.traverseTree();
-        calculateAccuracy(treeDataset.TestingDataset, decesionTree);
 
-        Wine testWine = treeDataset.TestingDataset.get(0);
-        int classFound = decesionTree.checkWine(testWine);
-        System.out.println("Class Found: " + classFound);
-        System.out.println("Actual Class: " + testWine.classType);
+        double accuracy = calculateAggregatedAverage();
+        System.out.println("Accuracy: " + accuracy*100 + "percent");
     }
 
-    private void calculateAccuracy (ArrayList<Wine> testSet, Tree decesionTree) {
+    private double calculateAggregatedAverage() throws FileNotFoundException {
+        double aggregatedAvgAccuracy = 0.0;
+
+        for (int i=0; i<1000; i++) {
+            treeDataset = new TreeDataset("wine.data");
+            decesionTree = new Tree(treeDataset);
+            aggregatedAvgAccuracy += calculateAccuracy(treeDataset.TestingDataset, decesionTree);
+        }
+
+        aggregatedAvgAccuracy /= 1000;
+        return aggregatedAvgAccuracy;
+    }
+
+    private double calculateAccuracy (ArrayList<Wine> testSet, Tree decesionTree) {
+        double average = 0.0;
         int totalTestCase = testSet.size();
         int totalAccurateFound = 0;
 
@@ -34,6 +42,7 @@ public class Driver {
                 totalAccurateFound++;
         }
 
-
+        average = (double) totalAccurateFound / (double) totalTestCase;
+        return average;
     }
 }
