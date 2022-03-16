@@ -2,9 +2,7 @@ package DecesionTree;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class TreeDataset {
     private final String filePath;
@@ -15,6 +13,8 @@ public class TreeDataset {
     public ArrayList<Wine> TrainingDataset = new ArrayList<>();
     public ArrayList<Wine> TestingDataset;
 
+    public ArrayList<ArrayList<Wine>> folds = new ArrayList<>();
+
     public TreeDataset (String filePath) throws FileNotFoundException {
         this.filePath = filePath;
         setInitialDatasets();
@@ -23,6 +23,7 @@ public class TreeDataset {
     private void setInitialDatasets() throws FileNotFoundException {
         parseDataFile();
         setTrainingDataset();
+        createFoldsForTestSets();
     }
 
     private void parseDataFile() throws FileNotFoundException {
@@ -69,5 +70,33 @@ public class TreeDataset {
     private int rangedRandom (int start, int end) {
         Random rand = new Random();
         return rand.nextInt(end - start + 1) + start;
+    }
+
+    public void createTrainAndTestSetFromFolds () {
+
+    }
+
+    private void createFoldsForTestSets () {
+        ArrayList<Wine> allData = new ArrayList<>(wines);
+        Collections.shuffle(allData);
+
+        int maximumFoldSize = (int) Math.ceil(allData.size()/10);
+        int insertCount = 0;
+
+        ArrayList<Wine> tempFold = new ArrayList<>();
+
+        for (Wine wine : allData) {
+            if (insertCount < maximumFoldSize) {
+                tempFold.add(wine);
+                insertCount++;
+
+            } else {
+                folds.add(tempFold);
+                tempFold.clear();
+                insertCount = 0;
+            }
+        }
+
+//        System.out.println("Total fold count: " + folds.size());
     }
 }
