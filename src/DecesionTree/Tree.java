@@ -32,24 +32,21 @@ public class Tree {
         if (root == null) {
             return;
         }
-        traverseTree(root);
+        traverseTree(root, 1);
     }
 
-    public void traverseTree (Node startNode) {
-        System.out.println(startNode);
+    public void traverseTree (Node startNode, int tabLevel) {
+        startNode.countClasses(tabLevel-1);
+
 
         if (startNode.leftChild != null) {
-            System.out.print("\t");
             System.out.print("l: ");
-            System.out.println(startNode.leftChild);
-            traverseTree(startNode.leftChild);
+            traverseTree(startNode.leftChild, tabLevel+1);
         }
 
         if (startNode.rightChild != null) {
-            System.out.print("\t");
             System.out.print("r: ");
-            System.out.println(startNode.rightChild);
-            traverseTree(startNode.rightChild);
+            traverseTree(startNode.rightChild, tabLevel+1);
         }
     }
 }

@@ -1,7 +1,5 @@
 package DecesionTree;
 
-import java.util.ArrayList;
-
 public class TreeBuilder {
     private final Node RootNode;
     private final int maxDimension;
@@ -18,22 +16,14 @@ public class TreeBuilder {
     }
 
     private void splitNode(Node currentParent) {
-        if (!currentParent.shouldSplit())
-            return;
+        if (currentParent.shouldSplit()) {
+            findBestSplitPoint(currentParent);
+            currentParent.splitByGivenCondition();
 
-        findBestSplitPoint(currentParent);
-        currentParent.splitByGivenCondition();
-
-        System.out.println("left child count: " + currentParent.leftChild.data.size());
-        if(currentParent.leftChild.shouldSplit()){
-            splitNode(currentParent.leftChild);}
-
-        System.out.println("right child count: " + currentParent.rightChild.data.size());
-        if(currentParent.rightChild.shouldSplit()){
-            splitNode(currentParent.rightChild);}
+            splitNode(currentParent.leftChild);
+            splitNode(currentParent.rightChild);
+        }
     }
-
-
 
     private void findBestSplitPoint(Node node) {
         Node tempNode = new Node(node.data);
@@ -44,9 +34,17 @@ public class TreeBuilder {
                 tempNode.setCondition(i, wine.get(i));
                 tempNode.splitByGivenCondition();
 
-                if (tempNode.informationGain() > initialGain) {
-                    initialGain = tempNode.informationGain();
-                    node.setCondition(tempNode.conditionAttribute, tempNode.conditionThreshold);
+                if (tempNode.leftChild.data.size() != 0 && tempNode.rightChild.data.size() != 0) {
+                    System.out.println("Node size: " + tempNode.data.size());
+                    System.out.println("Enthropy: " + tempNode.enthropy());
+                    System.out.println("Condition attr: " + tempNode.conditionAttribute + " Condition threshold: " + tempNode.conditionThreshold);
+                    System.out.println("left nut size: " + tempNode.leftChild.data.size() + " right nut size: " + tempNode.rightChild.data.size());
+                    System.out.println("Information Gain: " + tempNode.informationGain());
+
+                    if (tempNode.informationGain() > initialGain) {
+                        initialGain = tempNode.informationGain();
+                        node.setCondition(tempNode.conditionAttribute, tempNode.conditionThreshold);
+                    }
                 }
             }
         }

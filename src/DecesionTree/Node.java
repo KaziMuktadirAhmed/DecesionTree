@@ -22,23 +22,17 @@ public class Node {
     }
 
     public boolean shouldSplit() {
-        if (data.size() < 2) {
-            System.out.println("should break size");
-            return false;
-        }
-        else {
-            int refClassType = data.get(0).classType;
-            for (Wine data : this.data) {
-                if (refClassType != data.classType) {
-                    System.out.println(refClassType + " is not " + data.classType);
-                    return true;
-                }
-            }
+        double[] count = new double[4];
+        Arrays.fill(count, 0);
+
+        for (Wine wine : data) {
+            count[0]++;
+            count[wine.classType]++;
         }
 
-        System.out.println("should break not match");
-        return false;
+        return count[1] * count[2] + count[2] * count[3] + count[3] * count[1] > 0;
     }
+
 
     public void splitByGivenCondition() {
         ArrayList<Wine> leftChildData = new ArrayList<>();
@@ -79,7 +73,8 @@ public class Node {
         }
 
         for (int i=1; i<maximumClassCount+1; i++) {
-            result -= (count[i]/count[0]) * logBase2(count[i]/count[0]);
+            if(count[i] != 0)
+                result -= (count[i]/count[0]) * logBase2(count[i]/count[0]);
         }
 
         return result;
@@ -95,6 +90,26 @@ public class Node {
     public void setCondition(int conditionAttribute, double conditionThreshold) {
         this.conditionAttribute = conditionAttribute;
         this.conditionThreshold = conditionThreshold;
+    }
+
+    public void countClasses (int tabLevel) {
+        double[] count = new double[4];
+        Arrays.fill(count, 0);
+        for (Wine wine : data) {
+            count[0]++;
+            count[wine.classType]++;
+        }
+
+        for (int i=0; i<tabLevel; i++) System.out.print("\t");
+        System.out.println("Total size " + count[0]);
+        for (int i=0; i<tabLevel; i++) System.out.print("\t");
+        System.out.println("Condition attr: " + conditionAttribute + " Condition threshold: " + conditionThreshold);
+        for (int i=0; i<tabLevel; i++) System.out.print("\t");
+        System.out.println("Class 1: " + count[1]);
+        for (int i=0; i<tabLevel; i++) System.out.print("\t");
+        System.out.println("Class 2: " + count[2]);
+        for (int i=0; i<tabLevel; i++) System.out.print("\t");
+        System.out.println("Class 3: " + count[3]);
     }
 }
 
