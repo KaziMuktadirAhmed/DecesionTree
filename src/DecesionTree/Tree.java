@@ -16,6 +16,7 @@ public class Tree {
     public Tree (TreeDataset treeDataset) {
         this.treeDataset = treeDataset;
         this.root = new Node(treeDataset.TrainingDataset);
+        buildTree();
     }
 
     private void buildTree() {
@@ -25,10 +26,23 @@ public class Tree {
 
     public int checkWine(Wine wineToBeChecked) {
         int foundClass = -1;
-
-
-
+        foundClass = Integer.parseInt(findWine(root, wineToBeChecked));
         return foundClass;
+    }
+
+    private String findWine(Node startNode, Wine wineToBeChecked) {
+        String retVal = "";
+        if (!startNode.isLeaf()) {
+            if (wineToBeChecked.get(startNode.conditionAttribute) <= startNode.conditionThreshold)
+                retVal = findWine(startNode.leftChild, wineToBeChecked);
+            else
+                retVal = findWine(startNode.rightChild, wineToBeChecked);
+        }
+        else {
+            retVal = startNode.classType;
+        }
+
+        return retVal;
     }
 
     public void traverseTree () {
@@ -38,7 +52,7 @@ public class Tree {
         traverseTree(root, 1);
     }
 
-    public void traverseTree (Node startNode, int tabLevel) {
+    private void traverseTree (Node startNode, int tabLevel) {
         startNode.printNode(tabLevel-1);
 
 

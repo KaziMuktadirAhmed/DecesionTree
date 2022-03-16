@@ -60,7 +60,7 @@ public class Node {
 
         for (int i=1; i<4; i++) {
             if (count[i] != 0)
-                classType += i + " ";
+                classType += i;
         }
     }
 
@@ -127,6 +127,10 @@ public class Node {
         for (int i=0; i<tabLevel; i++) System.out.print("\t");
         System.out.println("Class 3: " + count[3]);
         System.out.println("");
+    }
+
+    public boolean isLeaf () {
+        return conditionAttribute == 0 && conditionThreshold == 0.0;
     }
 }
 
