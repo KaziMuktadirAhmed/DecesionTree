@@ -16,7 +16,7 @@ public class Driver {
         decesionTree.traverseTree();
 
         double accuracy = calculateAggregatedAverage();
-        System.out.println("Accuracy: " + accuracy*100 + "percent");
+        System.out.println("Accuracy: " + accuracy*100 + " percent");
     }
 
     private double calculateAggregatedAverage() throws FileNotFoundException {
